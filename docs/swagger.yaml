@@ -1,0 +1,65 @@
+definitions:
+  album.Album:
+    properties:
+      artist:
+        type: string
+      id:
+        type: string
+      price:
+        type: number
+      title:
+        type: string
+    type: object
+  album.albumDTO:
+    properties:
+      artist:
+        type: string
+      price:
+        type: number
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Dummy API as first go project
+  title: Music API
+  version: "1.0"
+paths:
+  /albums:
+    get:
+      consumes:
+      - application/json
+      description: get all albums
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/album.Album'
+            type: array
+      summary: Get all albums
+      tags:
+      - Albums
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: DTO for Album creation
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/album.albumDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/album.Album'
+      summary: Create a new Album
+      tags:
+      - Albums
+swagger: "2.0"
