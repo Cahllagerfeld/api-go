@@ -1,0 +1,12 @@
+info:
+  contact: {}
+paths:
+  /albums:
+    get:
+      consumes:
+      - application/json
+      description: get all albums
+      produces:
+      - application/json
+      summary: ping example
+swagger: "2.0"

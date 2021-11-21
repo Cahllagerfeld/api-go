@@ -7,6 +7,12 @@ import (
 	"github.com/google/uuid"
 )
 
+// @Summary ping example
+// @Schemes
+// @Description get all albums
+// @Accept json
+// @Produce json
+// @Router /albums [get]
 func GetAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, albums)
 }
