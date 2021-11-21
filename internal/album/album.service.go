@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 func GetAlbums(c *gin.Context) {
@@ -11,10 +12,17 @@ func GetAlbums(c *gin.Context) {
 }
 
 func CreateAlbum(c *gin.Context) {
-	var NewAlbum album
+	var NewAlbumDTO albumDTO
 
-	if err := c.BindJSON(&NewAlbum); err != nil {
+	if err := c.BindJSON(&NewAlbumDTO); err != nil {
 		return
+	}
+
+	NewAlbum := album{
+		ID:     uuid.New().String(),
+		Title:  NewAlbumDTO.Title,
+		Artist: NewAlbumDTO.Artist,
+		Price:  NewAlbumDTO.Price,
 	}
 
 	albums = append(albums, NewAlbum)
