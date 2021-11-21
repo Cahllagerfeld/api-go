@@ -8,6 +8,10 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// @title Music API
+// @version 1.0
+// @description Dummy API as first go project
+
 func main() {
 	router := gin.Default()
 	router.GET("/albums", album.GetAlbums)

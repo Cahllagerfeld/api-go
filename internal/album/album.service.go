@@ -7,16 +7,26 @@ import (
 	"github.com/google/uuid"
 )
 
-// @Summary ping example
+// @Summary Get all albums
 // @Schemes
 // @Description get all albums
 // @Accept json
 // @Produce json
 // @Router /albums [get]
+// @Tags Albums
+// @Success 200 {array} Album Album with UUID
 func GetAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, albums)
 }
 
+// @Summary Create a new Album
+// @Schemes
+// @Accept json
+// @Produce json
+// @Router /albums [post]
+// @Tags Albums
+// @Param data body albumDTO true "DTO for Album creation"
+// @Success 200 {object} Album UUID of new Album
 func CreateAlbum(c *gin.Context) {
 	var NewAlbumDTO albumDTO
 
@@ -24,7 +34,7 @@ func CreateAlbum(c *gin.Context) {
 		return
 	}
 
-	NewAlbum := album{
+	NewAlbum := Album{
 		ID:     uuid.New().String(),
 		Title:  NewAlbumDTO.Title,
 		Artist: NewAlbumDTO.Artist,
