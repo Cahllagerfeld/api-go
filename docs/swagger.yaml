@@ -78,4 +78,25 @@ paths:
       summary: Delete a album Album
       tags:
       - Albums
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID of Item
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: DTO for update the album
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/album.albumDTO'
+      responses:
+        "200":
+          description: ""
+      summary: Update a album
+      tags:
+      - Albums
 swagger: "2.0"

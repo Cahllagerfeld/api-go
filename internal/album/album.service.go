@@ -1,7 +1,6 @@
 package album
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -75,5 +74,31 @@ func DeleteByID(c *gin.Context) {
 		}
 	}
 	albums = albums[:k]
-	fmt.Println(albums)
+}
+
+// @Summary Update a album
+// @Schemes
+// @Accept json
+// @Router /albums/{id}  [put]
+// @Tags Albums
+// @Param id path string true "ID of Item"
+// @Param Body body albumDTO true "DTO for update the album"
+// @Success 200
+func UpdateByID(c *gin.Context) {
+	id := c.Param("id")
+	var NewAlbumDTO albumDTO
+
+	if err := c.BindJSON(&NewAlbumDTO); err != nil {
+		return
+	}
+
+	for _, album := range albums {
+		if album.ID == id {
+			album.ID = album.ID
+			album.Artist = NewAlbumDTO.Artist
+			album.Price = NewAlbumDTO.Price
+			album.Title = NewAlbumDTO.Title
+			c.IndentedJSON(http.StatusCreated, album)
+		}
+	}
 }

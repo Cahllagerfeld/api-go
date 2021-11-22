@@ -81,6 +81,38 @@ var doc = `{
             }
         },
         "/albums/{id}": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Update a album",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of Item",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "DTO for update the album",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/album.albumDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            },
             "delete": {
                 "consumes": [
                     "application/json"
