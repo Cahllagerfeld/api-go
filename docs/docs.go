@@ -62,7 +62,7 @@ var doc = `{
                 "parameters": [
                     {
                         "description": "DTO for Album creation",
-                        "name": "data",
+                        "name": "Body",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -76,6 +76,31 @@ var doc = `{
                         "schema": {
                             "$ref": "#/definitions/album.Album"
                         }
+                    }
+                }
+            }
+        },
+        "/albums/{id}": {
+            "delete": {
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Delete a album Album",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of Item",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
                     }
                 }
             }

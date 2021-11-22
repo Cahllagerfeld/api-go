@@ -1,6 +1,7 @@
 package album
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -25,7 +26,7 @@ func GetAlbums(c *gin.Context) {
 // @Produce json
 // @Router /albums [post]
 // @Tags Albums
-// @Param data body albumDTO true "DTO for Album creation"
+// @Param Body body albumDTO true "DTO for Album creation"
 // @Success 200 {object} Album UUID of new Album
 func CreateAlbum(c *gin.Context) {
 	var NewAlbumDTO albumDTO
@@ -55,4 +56,24 @@ func GetByID(c *gin.Context) {
 		}
 	}
 	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+}
+
+// @Summary Delete a album Album
+// @Schemes
+// @Accept json
+// @Router /albums/{id}  [delete]
+// @Tags Albums
+// @Param id path string true "ID of Item"
+// @Success 204
+func DeleteByID(c *gin.Context) {
+	id := c.Param("id")
+	k := 0
+	for _, album := range albums {
+		if album.ID == id {
+			albums[k] = album
+			k++
+		}
+	}
+	albums = albums[:k]
+	fmt.Println(albums)
 }

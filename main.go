@@ -16,6 +16,7 @@ func main() {
 	router := gin.Default()
 	router.GET("/albums", album.GetAlbums)
 	router.POST("/albums", album.CreateAlbum)
+	router.DELETE("/albums/:id", album.DeleteByID)
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	router.Run(":3000")

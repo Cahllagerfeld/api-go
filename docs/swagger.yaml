@@ -48,7 +48,7 @@ paths:
       parameters:
       - description: DTO for Album creation
         in: body
-        name: data
+        name: Body
         required: true
         schema:
           $ref: '#/definitions/album.albumDTO'
@@ -60,6 +60,22 @@ paths:
           schema:
             $ref: '#/definitions/album.Album'
       summary: Create a new Album
+      tags:
+      - Albums
+  /albums/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID of Item
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ""
+      summary: Delete a album Album
       tags:
       - Albums
 swagger: "2.0"
